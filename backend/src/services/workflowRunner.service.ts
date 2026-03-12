@@ -24,6 +24,7 @@ export const runWorkflowDocument = async (
   try {
     const result = await executeWorkflow(workflow, {
       startNodeIds: options.startNodeIds,
+      initialContext: { $input: options.inputSnapshot ?? {} },
     });
 
     await executionService.completeExecution(execution.id, userId, {

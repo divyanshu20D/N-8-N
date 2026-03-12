@@ -3,6 +3,7 @@ import MainLayout from "./layouts/MainLayout/MainLayout";
 import WorkflowList from "./pages/WorkflowList/WorkflowList";
 import WorkflowEditor from "./pages/WorkflowEditor/WorkflowEditor";
 import Executions from "./pages/Executions/Executions";
+import Incidents from "./pages/Incidents/Incidents";
 import Credentials from "./pages/Credentials/Credentials";
 import Marketplace from "./pages/Marketplace/Marketplace";
 import Settings from "./pages/Settings/Settings";
@@ -29,6 +30,7 @@ export default function App() {
             }
           >
             <Route path="/" element={<WorkflowList />} />
+            <Route path="/incidents" element={<Incidents />} />
             <Route path="/executions" element={<Executions />} />
             <Route path="/credentials" element={<Credentials />} />
             <Route path="/marketplace" element={<Marketplace />} />

@@ -54,6 +54,36 @@ export const NODE_TYPES: NodeTypeDefinition[] = [
     outputs: 1,
   },
   {
+    type: "incident-trigger",
+    category: "action",
+    name: "Incident Trigger",
+    description: "Create or update a correlated incident record",
+    icon: "Siren",
+    color: "#f97316", // Orange
+    inputs: 1,
+    outputs: 1,
+  },
+  {
+    type: "signal-check",
+    category: "action",
+    name: "Signal Check",
+    description: "Fetch or read a metric and normalize it for incident workflows",
+    icon: "Activity",
+    color: "#06b6d4", // Cyan
+    inputs: 1,
+    outputs: 1,
+  },
+  {
+    type: "severity-rule",
+    category: "utility",
+    name: "Severity Rule",
+    description: "Evaluate a numeric signal and assign warning/high/critical severity",
+    icon: "Gauge",
+    color: "#ef4444", // Red
+    inputs: 1,
+    outputs: 1,
+  },
+  {
     type: "discord",
     category: "action",
     name: "Discord",

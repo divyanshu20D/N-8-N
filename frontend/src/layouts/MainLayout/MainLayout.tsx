@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { NavLink } from "react-router-dom";
 import {
+  Siren,
   History,
   Key,
   Settings,
@@ -49,6 +50,10 @@ export default function MainLayout({ children }: MainLayoutProps) {
           <NavLink to="/" title="Workflows" className={linkClass}>
             <LayoutDashboard size={20} />
             <span className="hidden">Workflows</span>
+          </NavLink>
+          <NavLink to="/incidents" title="Incidents" className={linkClass}>
+            <Siren size={20} />
+            <span className="hidden">Incidents</span>
           </NavLink>
           <NavLink to="/executions" title="Executions" className={linkClass}>
             <History size={20} />

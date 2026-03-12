@@ -11,6 +11,7 @@ import workflowRoutes from "./src/routes/workflow.routes";
 import nodeCatalogRoutes from "./src/routes/nodeCatalog.routes";
 import credentialRoutes from "./src/routes/credential.routes";
 import executionRoutes from "./src/routes/execution.routes";
+import incidentRoutes from "./src/routes/incident.routes";
 import triggerRoutes from "./src/routes/trigger.routes";
 import { initializeTriggerInfrastructure } from "./src/services/trigger.service";
 import { sendError } from "./src/utils/errorResponse";
@@ -42,6 +43,7 @@ app.use("/api/workflows", workflowRoutes);
 app.use("/api/nodes", nodeCatalogRoutes);
 app.use("/api/credentials", credentialRoutes);
 app.use("/api/executions", executionRoutes);
+app.use("/api/incidents", incidentRoutes);
 app.use("/api/triggers", triggerRoutes);
 
 app.get("/", (req, res) => {

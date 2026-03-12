@@ -96,3 +96,58 @@ export interface ExecutionUpdate {
   error?: string;
   timestamp: number;
 }
+
+export type IncidentSeverity = "warning" | "high" | "critical";
+export type IncidentStatus =
+  | "open"
+  | "investigating"
+  | "monitoring"
+  | "resolved";
+
+export interface IncidentTimelineEvent {
+  type: string;
+  title: string;
+  detail?: string;
+  metadata?: Record<string, unknown>;
+  createdAt: number;
+}
+
+export interface IncidentRemediationAttempt {
+  action: string;
+  status: "pending" | "success" | "failed";
+  detail?: string;
+  createdAt: number;
+  verifiedAt?: number;
+}
+
+export interface IncidentItem {
+  id: string;
+  userId: string;
+  workflowId?: string;
+  title: string;
+  summary?: string;
+  severity: IncidentSeverity;
+  status: IncidentStatus;
+  source: string;
+  service?: string;
+  environment?: string;
+  dedupeKey: string;
+  signalCount: number;
+  currentSymptoms: string[];
+  notionPageId?: string;
+  aiSummary?: string;
+  timeline: IncidentTimelineEvent[];
+  remediationAttempts: IncidentRemediationAttempt[];
+  createdAt: number;
+  updatedAt: number;
+}
+
+export interface IncidentListResponse {
+  items: IncidentItem[];
+  pagination: {
+    page: number;
+    limit: number;
+    total: number;
+    totalPages: number;
+  };
+}
