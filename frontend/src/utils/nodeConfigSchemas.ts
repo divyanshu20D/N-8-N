@@ -195,6 +195,133 @@ export const NODE_CONFIG_SCHEMAS: Record<string, ConfigField[]> = {
     },
   ],
 
+  "remediation-action": [
+    {
+      key: "actionName",
+      label: "Action Name",
+      type: "text",
+      placeholder: "Pause payment retries",
+      required: true,
+    },
+    {
+      key: "url",
+      label: "URL",
+      type: "text",
+      placeholder: "https://staging.example.com/internal/remediation/pause-retries",
+      required: true,
+    },
+    {
+      key: "method",
+      label: "Method",
+      type: "select",
+      options: [
+        { label: "POST", value: "POST" },
+        { label: "PUT", value: "PUT" },
+        { label: "PATCH", value: "PATCH" },
+      ],
+      defaultValue: "POST",
+      required: true,
+    },
+    {
+      key: "headers",
+      label: "Headers (JSON)",
+      type: "textarea",
+      placeholder: '{"Authorization":"Bearer token"}',
+    },
+    {
+      key: "body",
+      label: "Request Body (JSON)",
+      type: "textarea",
+      placeholder: '{"service":"payments-api"}',
+    },
+    {
+      key: "successStatusCodes",
+      label: "Success Status Codes",
+      type: "text",
+      placeholder: "200,202,204",
+      defaultValue: "200,202,204",
+    },
+    {
+      key: "timeoutMs",
+      label: "Timeout (ms)",
+      type: "number",
+      defaultValue: 15000,
+    },
+    {
+      key: "recordToIncident",
+      label: "Record To Incident",
+      type: "checkbox",
+      placeholder: "Save this action result to the incident timeline",
+      defaultValue: true,
+    },
+    {
+      key: "failWorkflowOnError",
+      label: "Fail Workflow On Error",
+      type: "checkbox",
+      placeholder: "Mark node as failed when remediation fails",
+      defaultValue: true,
+    },
+  ],
+
+  "incident-delay": [
+    {
+      key: "duration",
+      label: "Duration",
+      type: "number",
+      required: true,
+      defaultValue: 5,
+    },
+    {
+      key: "unit",
+      label: "Unit",
+      type: "select",
+      options: [
+        { label: "Seconds", value: "seconds" },
+        { label: "Minutes", value: "minutes" },
+        { label: "Milliseconds", value: "milliseconds" },
+      ],
+      defaultValue: "seconds",
+      required: true,
+    },
+  ],
+
+  "notion-incident": [
+    {
+      key: "credentialId",
+      label: "Notion Credential",
+      type: "credential",
+      required: true,
+    },
+    {
+      key: "title",
+      label: "Page Title",
+      type: "text",
+      placeholder: "Stripe payment incident",
+    },
+    {
+      key: "appendMode",
+      label: "Write Mode",
+      type: "select",
+      options: [
+        { label: "Create Or Append", value: "upsert" },
+        { label: "Always Create", value: "create" },
+        { label: "Append Existing Only", value: "append" },
+      ],
+      defaultValue: "upsert",
+      required: true,
+    },
+  ],
+
+  "ai-summary": [
+    {
+      key: "persistToIncident",
+      label: "Persist To Incident",
+      type: "checkbox",
+      placeholder: "Save generated summary on the incident record",
+      defaultValue: true,
+    },
+  ],
+
   "severity-rule": [
     {
       key: "label",

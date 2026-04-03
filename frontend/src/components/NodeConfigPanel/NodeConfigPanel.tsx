@@ -439,6 +439,7 @@ function ConfigFieldInput({
       if (node === "telegram") return provider.includes("telegram");
       if (node === "weather") return provider.includes("weather");
       if (node === "postgres") return provider.includes("postgres");
+      if (node === "notion-incident") return provider.includes("notion");
       return true;
     });
 

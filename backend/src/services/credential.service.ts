@@ -154,6 +154,30 @@ const runProviderTest = async (
       });
       return { success: true, message: "Weather API key is valid", provider };
     }
+    case "notion": {
+      const apiKey = String(data.apiKey ?? "");
+      const parentPageId = String(data.parentPageId ?? "");
+      const notionVersion = String(data.notionVersion ?? "2022-06-28");
+      if (!apiKey || !parentPageId) {
+        throw new Error("Missing apiKey or parentPageId for notion credential");
+      }
+
+      const headers = {
+        Authorization: `Bearer ${apiKey}`,
+        "Notion-Version": notionVersion,
+      };
+
+      await axios.get("https://api.notion.com/v1/users/me", { headers });
+      await axios.get(`https://api.notion.com/v1/pages/${parentPageId}`, {
+        headers,
+      });
+
+      return {
+        success: true,
+        message: "Notion token and parent page access are valid",
+        provider,
+      };
+    }
     default:
       return {
         success: true,

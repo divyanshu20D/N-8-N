@@ -74,6 +74,46 @@ export const NODE_TYPES: NodeTypeDefinition[] = [
     outputs: 1,
   },
   {
+    type: "remediation-action",
+    category: "action",
+    name: "Remediation Action",
+    description: "Call a recovery endpoint and record the result on the incident timeline",
+    icon: "Wrench",
+    color: "#22c55e", // Green
+    inputs: 1,
+    outputs: 1,
+  },
+  {
+    type: "incident-delay",
+    category: "utility",
+    name: "Incident Delay",
+    description: "Pause the workflow before rechecking or escalating",
+    icon: "TimerReset",
+    color: "#f59e0b", // Amber
+    inputs: 1,
+    outputs: 1,
+  },
+  {
+    type: "notion-incident",
+    category: "action",
+    name: "Notion Incident",
+    description: "Create or update a Notion incident page from workflow data",
+    icon: "FileText",
+    color: "#111827", // Near black
+    inputs: 1,
+    outputs: 1,
+  },
+  {
+    type: "ai-summary",
+    category: "action",
+    name: "AI Summary",
+    description: "Generate a likely-cause summary for the incident",
+    icon: "Sparkles",
+    color: "#8b5cf6", // Violet
+    inputs: 1,
+    outputs: 1,
+  },
+  {
     type: "severity-rule",
     category: "utility",
     name: "Severity Rule",

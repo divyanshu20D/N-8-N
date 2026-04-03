@@ -35,6 +35,7 @@ function WorkflowNode({ data, selected }: NodeProps) {
     | "running"
     | "success"
     | "error";
+  const isConditional = nodeData.nodeType === "conditional";
 
   // Base handle classes
   const handleBaseClasses =
@@ -97,12 +98,37 @@ function WorkflowNode({ data, selected }: NodeProps) {
         id="bottom"
         className={`${handleBaseClasses} !-bottom-[5px] !left-1/2 !-translate-x-1/2 hover:!bg-[var(--node-color)] hover:shadow-[0_0_8px_color-mix(in_srgb,var(--node-color)_50%,transparent)]`}
       />
-      <Handle
-        type="source"
-        position={Position.Bottom}
-        id="bottom-src"
-        className={`${handleBaseClasses} !-bottom-[5px] !left-1/2 !-translate-x-1/2 hover:!bg-[var(--node-color)] hover:shadow-[0_0_8px_color-mix(in_srgb,var(--node-color)_50%,transparent)]`}
-      />
+      {!isConditional && (
+        <Handle
+          type="source"
+          position={Position.Bottom}
+          id="bottom-src"
+          className={`${handleBaseClasses} !-bottom-[5px] !left-1/2 !-translate-x-1/2 hover:!bg-[var(--node-color)] hover:shadow-[0_0_8px_color-mix(in_srgb,var(--node-color)_50%,transparent)]`}
+        />
+      )}
+
+      {isConditional && (
+        <>
+          <Handle
+            type="source"
+            position={Position.Bottom}
+            id="true"
+            className={`${handleBaseClasses} !-bottom-[5px] !left-[28%] hover:!bg-emerald-400 hover:shadow-[0_0_8px_rgba(52,211,153,0.5)]`}
+          />
+          <Handle
+            type="source"
+            position={Position.Bottom}
+            id="false"
+            className={`${handleBaseClasses} !-bottom-[5px] !left-[72%] hover:!bg-red-400 hover:shadow-[0_0_8px_rgba(248,113,113,0.5)]`}
+          />
+          <div className="pointer-events-none absolute -bottom-6 left-[21%] text-[10px] font-bold uppercase tracking-wider text-emerald-300">
+            True
+          </div>
+          <div className="pointer-events-none absolute -bottom-6 left-[63%] text-[10px] font-bold uppercase tracking-wider text-red-300">
+            False
+          </div>
+        </>
+      )}
 
       {/* Left handles */}
       <Handle

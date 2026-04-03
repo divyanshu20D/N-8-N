@@ -9,6 +9,7 @@ import {
   Globe,
   MessageSquare,
   Lock,
+  FileText,
   Trash2,
   FlaskConical,
   Pencil,
@@ -30,6 +31,7 @@ const PROVIDER_META: Record<
   postgres: { label: "PostgreSQL", icon: Database, color: "#60a5fa" },
   telegram: { label: "Telegram Bot", icon: Globe, color: "#38bdf8" },
   weather: { label: "OpenWeatherMap", icon: Lock, color: "#2dd4bf" },
+  notion: { label: "Notion", icon: FileText, color: "#111827" },
 };
 
 const getProviderMeta = (provider: string) =>

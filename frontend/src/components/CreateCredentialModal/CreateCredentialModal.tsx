@@ -6,6 +6,7 @@ import {
   Globe,
   MessageSquare,
   Lock,
+  FileText,
   ChevronRight,
   Info,
 } from "lucide-react";
@@ -57,6 +58,18 @@ const CREDENTIAL_PROVIDERS = [
     icon: Lock,
     color: "#2dd4bf",
     fields: [{ label: "API Key", key: "apiKey", secret: true }],
+  },
+  {
+    id: "notion",
+    name: "Notion",
+    provider: "notion",
+    icon: FileText,
+    color: "#111827",
+    fields: [
+      { label: "API Token", key: "apiKey", secret: true },
+      { label: "Parent Page ID", key: "parentPageId", secret: false },
+      { label: "Notion Version", key: "notionVersion", secret: false },
+    ],
   },
 ];
 

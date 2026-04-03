@@ -265,3 +265,47 @@ export const recordRemediationCheck = async (
   await incident.save();
   return toIncidentDto(incident);
 };
+
+export const updateIncidentAutomationState = async (
+  id: string,
+  userId: string,
+  payload: {
+    notionPageId?: string;
+    aiSummary?: string;
+    status?: IncidentStatus;
+    timelineEvent?: {
+      type: string;
+      title: string;
+      detail?: string;
+      metadata?: Record<string, unknown>;
+    };
+  },
+) => {
+  const incident = await Incident.findOne({ _id: id, userId });
+  if (!incident) return null;
+
+  if (payload.notionPageId) {
+    incident.notionPageId = payload.notionPageId;
+  }
+
+  if (payload.aiSummary) {
+    incident.aiSummary = payload.aiSummary;
+  }
+
+  if (payload.status) {
+    incident.status = payload.status;
+  }
+
+  if (payload.timelineEvent) {
+    incident.timeline.push({
+      type: payload.timelineEvent.type,
+      title: payload.timelineEvent.title,
+      detail: payload.timelineEvent.detail,
+      metadata: payload.timelineEvent.metadata,
+      createdAt: new Date(),
+    });
+  }
+
+  await incident.save();
+  return toIncidentDto(incident);
+};
